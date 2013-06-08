@@ -41,13 +41,13 @@ class Svg_Named_Colors_Grid_Test extends Svg_Test_Base {
   // val named_colors = palette.All_Named_Colors.colors
   val named_colors = new palette.Color_Palette_From_Color_Name_Seq {
 
-    import k_k_.io.data.String_Seq_From_Data_File
+    import k_k_.io.data.StringSeqFromDataFile
 
-    protected lazy val color_name_seq = named_colors_data.get_seq
+    protected lazy val color_name_seq = named_colors_data.getSeq
 
     private val named_colors_data =
-        new String_Seq_From_Data_File(color_names_fpath) {
-          override protected val load_via = classOf[Svg_Named_Colors_Grid_Test]
+        new StringSeqFromDataFile(color_names_fpath) {
+          override protected val loadVia = classOf[Svg_Named_Colors_Grid_Test]
         }
   }.colors
 

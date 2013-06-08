@@ -40,7 +40,7 @@ import java.util.concurrent.ConcurrentHashMap
 import scala.collection.mutable.ConcurrentMap
 import scala.collection.JavaConversions._
 
-import k_k_.io.data.Char_Double_Seq_From_Data_File
+import k_k_.io.data.CharDoubleSeqFromDataFile
 import k_k_.fs.Resources
 
 
@@ -764,9 +764,9 @@ trait Loadable_Char_Measurements extends Char_Measurements_Source {
            Resources.matching(calc_measure_fpath_prefix(font, load_dir),
                               classOf[Font]);
          measure_seq <-
-           new Char_Double_Seq_From_Data_File(font_measure_fpath) {
-             override protected val load_via = classOf[Font]
-           }.get_seq)
+           new CharDoubleSeqFromDataFile(font_measure_fpath) {
+             override protected val loadVia = classOf[Font]
+           }.getSeq)
       yield measure_seq
 
   protected def calc_measure_fpath_prefix(font: Font, path_dir_base: String):

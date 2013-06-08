@@ -847,7 +847,7 @@ final case class Parallelogram(side_width: Double, full_width: Double,
 
   def as_path = {
   //??????is rearranging these a good idea or not?????
-    val (long_width, short_width) = More_Math.max_min(side_width, full_width)
+    val (long_width, short_width) = More_Math.maxMin(side_width, full_width)
     val slant_width = long_width - short_width
     val upper_left: Point = (0 - (long_width/2 - slant_width),
                              0 - height/2) 
@@ -1158,9 +1158,9 @@ sealed class Free_Form(val path: Path)
                       curr_bounds: Option[(Point, Point)]) = {
         val finish_pos = finish_path_memory.curr_pt
         val (line_min_x, line_max_x) =
-          More_Math.min_max(start_pos.x, finish_pos.x)
+          More_Math.minMax(start_pos.x, finish_pos.x)
         val (line_min_y, line_max_y) =
-          More_Math.min_max(start_pos.y, finish_pos.y)
+          More_Math.minMax(start_pos.y, finish_pos.y)
         curr_bounds match {
           case None =>
             Some((Point(line_min_x, line_min_y),
@@ -1763,8 +1763,8 @@ object Dims {
     Some(o.width, o.height)
 
   def min_containing(pt1: Point, pt2: Point): Dims = {
-    val (min_x, max_x) = More_Math.min_max(pt1.x, pt2.x)
-    val (min_y, max_y) = More_Math.min_max(pt1.y, pt2.y)
+    val (min_x, max_x) = More_Math.minMax(pt1.x, pt2.x)
+    val (min_y, max_y) = More_Math.minMax(pt1.y, pt2.y)
     val (width, height) = (if (max_x == min_x) 0.001 else max_x - min_x,
                            if (max_y == min_y) 0.001 else max_y - min_y)
     val ctr_pt: Point = (max_x - width/2, max_y - height/2)

@@ -55,7 +55,7 @@ class Svg_Common_Scaling_Test extends Svg_Test_Base {
 
 
   val entities_fpath =
-          "target/test-classes/data/entities/tie_shape_entities.list"
+          "target/scala-2.10/test-classes/data/entities/tie_shape_entities.list"
   val entities_file = new File(entities_fpath)
 
   @Test

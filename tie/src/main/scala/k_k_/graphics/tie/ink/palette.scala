@@ -18,7 +18,7 @@ package k_k_.graphics.tie.ink
 
 package palette {
 
-import k_k_.io.data.String_Seq_From_Data_File
+import k_k_.io.data.StringSeqFromDataFile
 
 
 trait Color_Palette {
@@ -57,13 +57,13 @@ abstract class Color_Palette_From_Color_Name_Seq extends Named_Color_Palette {
 
 object All_Named_Colors extends Color_Palette_From_Color_Name_Seq {
 
-  protected lazy val color_name_seq = named_colors_data.get_seq
+  protected lazy val color_name_seq = named_colors_data.getSeq
 
   val path_name = "/data/k_k_.graphics.tie/color/css2_color_names.list"
 
-  private val named_colors_data = new String_Seq_From_Data_File(path_name) {
+  private val named_colors_data = new StringSeqFromDataFile(path_name) {
 
-    override protected val load_via = classOf[Color]
+    override protected val loadVia = classOf[Color]
   }
 }
 

@@ -37,11 +37,13 @@ package text {
 
 import java.util.concurrent.ConcurrentHashMap
 
-import scala.collection.mutable.ConcurrentMap
+import scala.collection.concurrent
 import scala.collection.JavaConversions._
 
 import k_k_.io.data.CharDoubleSeqFromDataFile
 import k_k_.fs.Resources
+
+import language.implicitConversions
 
 
 object Font_Size {
@@ -690,7 +692,7 @@ trait Memoizing_Text_Ruler_Factory { self: Text_Ruler_Factory =>
 
   protected def do_create(font: Font): Text_Ruler
 
-  private val recall: ConcurrentMap[Font, Text_Ruler] =
+  private val recall: concurrent.Map[Font, Text_Ruler] =
     new ConcurrentHashMap[Font, Text_Ruler]
 }
 

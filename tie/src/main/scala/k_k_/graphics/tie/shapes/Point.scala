@@ -18,6 +18,8 @@ package k_k_.graphics.tie.shapes
 
 import k_k_.graphics.tie.transform.{Transformable, Placeable}
 
+import language.implicitConversions
+
 
 object Point {
 

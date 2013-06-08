@@ -24,6 +24,9 @@ import k_k_.graphics.tie.shapes.{Shape, Null_Shape}
 
 import conversions._
 
+import language.higherKinds
+import language.postfixOps
+
 
 //final case class Collected_Shapes[+T <: Traversable[Shape]](shapes: T)
 final case class Collected_Shapes[C[X] <: Traversable[X]](shapes: C[Shape]) {

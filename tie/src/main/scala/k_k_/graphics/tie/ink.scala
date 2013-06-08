@@ -25,6 +25,8 @@ import k_k_.graphics.tie.effects.{Opacity_Effect, Opacity}
 import k_k_.graphics.tie.shapes.{Point, Shape}
 import k_k_.graphics.tie.transform._
 
+import language.implicitConversions
+
 
 sealed abstract class Ink {
 

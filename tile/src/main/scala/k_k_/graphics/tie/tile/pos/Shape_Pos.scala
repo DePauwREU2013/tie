@@ -23,6 +23,8 @@ import k_k_.graphics.tie.shapes.path.Path
 
 import conversions._
 
+import language.implicitConversions
+
 
 final class Positionable_Shape(self: Shape) {
 

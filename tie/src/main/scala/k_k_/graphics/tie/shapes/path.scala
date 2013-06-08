@@ -20,6 +20,9 @@ package path {
 
 import k_k_.graphics.tie.transform.{Transformable, Placeable}
 
+import language.implicitConversions
+import language.reflectiveCalls
+
 
 sealed abstract class Path_Cmd extends Transformable[Path_Cmd] {
 

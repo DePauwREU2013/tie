@@ -18,6 +18,7 @@ package k_k_.graphics.tie
 
 package effects {
 
+import language.implicitConversions
 
 object Effect {
   implicit def from_Double(opacity: Double) = Opacity_Effect(opacity)

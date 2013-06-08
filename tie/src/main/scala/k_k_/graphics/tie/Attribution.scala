@@ -18,6 +18,8 @@ package k_k_.graphics.tie
 
 import java.net.URI
 
+import language.implicitConversions
+
 
 object Attribution {
   implicit def from_String(id: String) = Id_Attribution(id)

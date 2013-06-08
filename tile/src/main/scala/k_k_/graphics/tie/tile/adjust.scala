@@ -24,6 +24,8 @@ import k_k_.graphics.tie.shapes.{Bounding_Boxed, Point, Shape, Simple_Shape,
 import k_k_.graphics.tie.tile.pos.Shape_Pos
 import conversions._
 
+import language.implicitConversions
+
 
 sealed abstract class Scaling_Strategy
 

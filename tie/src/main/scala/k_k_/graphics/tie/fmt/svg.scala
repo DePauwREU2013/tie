@@ -28,6 +28,9 @@ import k_k_.graphics.tie.shapes._
 import k_k_.graphics.tie.shapes.path._
 import k_k_.graphics.tie.shapes.text._
 
+import language.implicitConversions
+import language.postfixOps
+
 
 object Script_Type {
 

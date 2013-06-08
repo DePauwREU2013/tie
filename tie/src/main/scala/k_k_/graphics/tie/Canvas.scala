@@ -19,6 +19,8 @@ package k_k_.graphics.tie
 import k_k_.graphics.tie.effects._
 import k_k_.graphics.tie.shapes._
 
+import language.postfixOps
+
 
 final case class Visible_Area(upper_left: Point, width: Double, height: Double)
 

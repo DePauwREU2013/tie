@@ -18,6 +18,8 @@ package k_k_.graphics.tie
 
 import k_k_.graphics.tie.shapes.{Bounding_Boxed, Point, Shape}
 
+import language.implicitConversions
+
 
 package object tile {
 

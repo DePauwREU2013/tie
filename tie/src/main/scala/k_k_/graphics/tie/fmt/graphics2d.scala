@@ -32,15 +32,15 @@ import language.implicitConversions
 import language.postfixOps
 
 
-object Script_Type {
-
-  val ecmascript_mime = "application/ecmascript"
-}
-
-class Script_Type(val mime: String)
-
-object ECMA_Script extends Script_Type(Script_Type.ecmascript_mime)
-object Javascript  extends Script_Type(Script_Type.ecmascript_mime)
+//object Script_Type {
+//
+//  val ecmascript_mime = "application/ecmascript"
+//}
+//
+//class Script_Type(val mime: String)
+//
+//object ECMA_Script extends Script_Type(Script_Type.ecmascript_mime)
+//object Javascript  extends Script_Type(Script_Type.ecmascript_mime)
 
 
 sealed abstract class Graphics2D_Renderer_Base extends Char_Output_Renderer {
@@ -52,15 +52,15 @@ sealed abstract class Graphics2D_Renderer_Base extends Char_Output_Renderer {
   }
 
 
-  protected def fmt_prologue(view_box: Visible_Area, title: String,
-                             desc: Option[String]): String
-
-  protected def fmt_epilogue(): String
-
-
-  protected def script_uris:              List[(Script_Type, String)] = Nil
-  protected def script_content:         Option[(Script_Type, String)] = None
-  protected def script_post_content_uris: List[(Script_Type, String)] = Nil
+//  protected def fmt_prologue(view_box: Visible_Area, title: String,
+//                             desc: Option[String]): String
+//
+//  protected def fmt_epilogue(): String
+//
+//
+//  protected def script_uris:              List[(Script_Type, String)] = Nil
+//  protected def script_content:         Option[(Script_Type, String)] = None
+//  protected def script_post_content_uris: List[(Script_Type, String)] = Nil
 }
 
 trait Catenated_Transforms { self: Graphics2D_Content_Renderer =>
@@ -87,32 +87,32 @@ object Size_Optimized_Graphics2D_Renderer extends Graphics2D_Renderer with Small
 
 class Graphics2D_Renderer extends Graphics2D_Content_Renderer {
 
-  protected def fmt_prologue(view_box: Visible_Area, title: String,
-                             desc: Option[String]): String = {
-    val result = """<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
-                     "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg viewBox="%f %f %f %f" version="1.1"
-     xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     xmlns:tie="%s"
-     tie:version="%s">
-
-  <title>%s</title>
-
-""".format(view_box.upper_left.x, view_box.upper_left.y, // (dumb emacs mode)"
-           view_box.width,        view_box.height,
-           Version.xmlns_uri,     Version.toString,
-           title)
-    desc match {
-      case Some(str) => result + "  <desc>%s</desc>\n".format(str)
-      case None      => result
-    }
-  }
-
-  protected def fmt_epilogue(): String = {
-    "</svg>\n"
-  }
+//  protected def fmt_prologue(view_box: Visible_Area, title: String,
+//                             desc: Option[String]): String = {
+//    val result = """<?xml version="1.0" standalone="no"?>
+//<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+//                     "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+//<svg viewBox="%f %f %f %f" version="1.1"
+//     xmlns="http://www.w3.org/2000/svg"
+//     xmlns:xlink="http://www.w3.org/1999/xlink"
+//     xmlns:tie="%s"
+//     tie:version="%s">
+//
+//  <title>%s</title>
+//
+//""".format(view_box.upper_left.x, view_box.upper_left.y, // (dumb emacs mode)"
+//           view_box.width,        view_box.height,
+//           Version.xmlns_uri,     Version.toString,
+//           title)
+//    desc match {
+//      case Some(str) => result + "  <desc>%s</desc>\n".format(str)
+//      case None      => result
+//    }
+//  }
+//
+//  protected def fmt_epilogue(): String = {
+//    "</svg>\n"
+//  }
 }
 
 
@@ -120,28 +120,28 @@ object Graphics2D_Elem_Renderer extends Graphics2D_Elem_Renderer
 
 class Graphics2D_Elem_Renderer extends Graphics2D_Content_Renderer {
 
-  protected def fmt_prologue(view_box: Visible_Area, title: String,
-                             desc: Option[String]): String = {
-    val result =
-"""<svg viewBox="%f %f %f %f" xmlns="http://www.w3.org/2000/svg"
-                           xmlns:xlink="http://www.w3.org/1999/xlink"
-                           xmlns:tie="%s"
-                           tie:version="%s">
-
-  <title>%s</title>
-
-""".format(view_box.upper_left.x, view_box.upper_left.y, // (dumb emacs mode)"
-           view_box.width,        view_box.height,
-           Version.xmlns_uri,     Version.toString,
-           title)
-    desc match {
-      case Some(str) => result + "  <desc>%s</desc>\n".format(str)
-      case None      => result
-    }
-  }
-
-  protected def fmt_epilogue(): String =
-    "</svg>\n"
+//  protected def fmt_prologue(view_box: Visible_Area, title: String,
+//                             desc: Option[String]): String = {
+//    val result =
+//"""<svg viewBox="%f %f %f %f" xmlns="http://www.w3.org/2000/svg"
+//                           xmlns:xlink="http://www.w3.org/1999/xlink"
+//                           xmlns:tie="%s"
+//                           tie:version="%s">
+//
+//  <title>%s</title>
+//
+//""".format(view_box.upper_left.x, view_box.upper_left.y, // (dumb emacs mode)"
+//           view_box.width,        view_box.height,
+//           Version.xmlns_uri,     Version.toString,
+//           title)
+//    desc match {
+//      case Some(str) => result + "  <desc>%s</desc>\n".format(str)
+//      case None      => result
+//    }
+//  }
+//
+//  protected def fmt_epilogue(): String =
+//    "</svg>\n"
 }
 
 
@@ -162,12 +162,12 @@ sealed abstract class Graphics2D_Content_Renderer extends Graphics2D_Renderer_Ba
 
   protected final def do_render(canvas: Canvas, os: Writer): Boolean = {
     val view_box = canvas.visible_area
-    os.write(fmt_prologue(view_box, canvas.title, canvas.desc))
+//    os.write(fmt_prologue(view_box, canvas.title, canvas.desc))
     os.write(fmt_view_box_debug_str(view_box))
 
-    script_uris.             foreach( p => write_script_uri(os, p._1, p._2) )
-    script_content.          foreach( p => write_script_content(os, p._1, p._2))
-    script_post_content_uris.foreach( p => write_script_uri(os, p._1, p._2) )
+//    script_uris.             foreach( p => write_script_uri(os, p._1, p._2) )
+//    script_content.          foreach( p => write_script_content(os, p._1, p._2))
+//    script_post_content_uris.foreach( p => write_script_uri(os, p._1, p._2) )
     
     // NOTE: render in reverse shapes order, so last-added is drawn last
     val defs = (canvas.shapes foldRight new Defs(view_box)){ (shape, defs) =>
@@ -175,7 +175,7 @@ sealed abstract class Graphics2D_Content_Renderer extends Graphics2D_Renderer_Ba
     }
     render_license_stamp(defs, os, view_box)
     render_defs(os, defs)
-    os.write(fmt_epilogue())
+//    os.write(fmt_epilogue())
     return true
   }
 
@@ -1281,18 +1281,18 @@ sealed abstract class Graphics2D_Content_Renderer extends Graphics2D_Renderer_Ba
   }
 
 
-  protected def write_script_uri(os: Writer, script_type: Script_Type,
-                                 uri: String) {
-    os.write("    <script type=\"%s\" xlink:href=\"%s\"/>\n".format(
-                                                       script_type.mime, 
-                                                       XML_Util.escape(uri)))
-  }
-
-  protected def write_script_content(os: Writer, script_type: Script_Type,
-                                     content: String) {
-    os.write("    <script type=\"%s\"> <![CDATA[\n%s\n    ]]> </script>\n".
-               format(script_type.mime, content))
-  }
+//  protected def write_script_uri(os: Writer, script_type: Script_Type,
+//                                 uri: String) {
+//    os.write("    <script type=\"%s\" xlink:href=\"%s\"/>\n".format(
+//                                                       script_type.mime, 
+//                                                       XML_Util.escape(uri)))
+//  }
+//
+//  protected def write_script_content(os: Writer, script_type: Script_Type,
+//                                     content: String) {
+//    os.write("    <script type=\"%s\"> <![CDATA[\n%s\n    ]]> </script>\n".
+//               format(script_type.mime, content))
+//  }
 
 
   protected def or_false(opt: Option[Boolean]): Boolean =

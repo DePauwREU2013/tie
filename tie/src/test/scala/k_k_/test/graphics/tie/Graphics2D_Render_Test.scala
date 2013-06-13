@@ -77,16 +77,16 @@ class Graphics2D_Render_Test extends JUnitSuite {
 	  
 	  val canvas: Canvas = new Canvas(
 	      Canvas_Props(600, 400, Origin_Top_Left, "Test Output"),
-	      Circle(100),
-	      Rectangle(50,70)
-	      )
+	      Circle(100) -* 2
+	    , Rectangle(50,70) -% 10 -+ (100, 100)
+	    )
 	  
 	  val panel = new CanvasPanel(canvas)
 	  panel.setBackground(Color.BLUE)
 	  panel.setSize(600,400)
 	  
 	  frame.setContentPane(panel)
-	  frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE)
+	  frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE)
 	  frame.setVisible(true)
 	  
   }

@@ -90,9 +90,4 @@ class Graphics2D_Render_Test extends JUnitSuite {
 	  
   }
   
-  
-  @Test
-  def test_Rendering() = {
-	  
-  }
 }

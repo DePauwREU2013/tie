@@ -23,10 +23,10 @@ import k_k_.graphics.tie._
 import k_k_.graphics.tie.Attribution._
 import k_k_.graphics.tie.ink.{Named_Colors => C, _}
 import k_k_.graphics.tie.shapes._
-import java.awt.{Graphics, Graphics2D}
+import java.awt.{Graphics, Graphics2D, Color}
 import javax.swing._
-import java.awt._
-import java.awt.Color
+//import java.awt._
+//import java.awt.Color
 import k_k_.graphics.tie.Canvas
 import k_k_.graphics.tie.fmt.ToyRenderer
 import k_k_.graphics.tie.fmt.graphics2d.Graphics2D_Renderer
@@ -77,7 +77,8 @@ class Graphics2D_Render_Test extends JUnitSuite {
 	  
 	  val canvas: Canvas = new Canvas(
 	      Canvas_Props(600, 400, Origin_Top_Left, "Test Output"),
-	      Circle(100)
+	      Circle(100),
+	      Rectangle(50,70)
 	      )
 	  
 	  val panel = new CanvasPanel(canvas)

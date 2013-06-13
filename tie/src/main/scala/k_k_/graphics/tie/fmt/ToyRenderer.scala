@@ -27,7 +27,9 @@ class ToyRenderer extends Renderer {
   
   protected final def render_shape(shape: Shape, g2d: Graphics2D): Unit = {
     shape match {
-      case Circle(rad: Double) => g2d.drawOval(0, 0, 2*rad.toInt, 2*rad.toInt)
+      case Circle(rad: Double) => g2d.drawOval(0, 0, 3*rad.toInt, 3*rad.toInt)
+      case Rectangle (len: Double, wid: Double) => g2d.drawRect(10, 10, len.toInt, wid.toInt)
+      //case Elliptical_Arc_Rel (width: double,height: double, startAngle: double, arcAngle: double) => g2d.drawArc(0, 0, width, height, startAngle, arcAngle)
       case _ => Nil
     }
   }

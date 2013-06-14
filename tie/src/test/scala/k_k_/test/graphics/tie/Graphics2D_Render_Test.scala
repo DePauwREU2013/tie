@@ -73,16 +73,33 @@ class Graphics2D_Render_Test extends JUnitSuite {
 //	    }
 //	  })
 	  
-	  
+	  /*
+	   * NOTE: I'm temporarily using the syntax
+	   * 
+	   * function(param
+	   * 		  param
+	   *     //   , param
+	   *        , param
+	   *        )
+	   * 
+	   * because its easier to comment out
+	   * while we change things in this file 
+	   * a lot. When things are under less 
+	   * flux, we can switch to a more
+	   * common form.
+	   */
 	  
 	  val canvas: Canvas = new Canvas(
 	      Canvas_Props(600, 400, Origin_Top_Left, "Test Output"),
 	      Circle(100) -* 2
 	    , Rectangle(50,70) -% 10 -+ (100, 100)
+	    // see: not commutative
+	    , Square(60) -/- 45 -/| 45
+	    , Square(50) -/| 45 -/- 45
 	    )
 	  
 	  val panel = new CanvasPanel(canvas)
-	  panel.setBackground(Color.BLUE)
+	  panel.setBackground(Color.WHITE)
 	  panel.setSize(600,400)
 	  
 	  frame.setContentPane(panel)

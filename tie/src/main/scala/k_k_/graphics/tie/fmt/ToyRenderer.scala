@@ -31,6 +31,8 @@ class ToyRenderer extends Renderer {
     
     def write_shape(s:Shape, transforms: List[AffineTransform]): Unit = {
       
+      import scala.math.{tan, toRadians}
+      
 	  s match {
 	    // first unwrap all transformations
 	    case Translated_Shape(orig: Shape, dx: Double, dy: Double) => {
@@ -40,18 +42,16 @@ class ToyRenderer extends Renderer {
 	      write_shape(orig, AffineTransform.getScaleInstance(sx, sy) :: transforms)
 	    }
 	    case Rotated_Shape(orig, degrees, x_pivot, y_pivot) => {
-	      write_shape(orig, AffineTransform.getRotateInstance(math.Pi*degrees/180.0, x_pivot, y_pivot) :: transforms)
+	      write_shape(orig, AffineTransform.getRotateInstance(toRadians(degrees), x_pivot, y_pivot) :: transforms)
 	    }
 	    /* TODO: need to implement Reflected_Shape transform
 	     *   cf: http://en.wikipedia.org/wiki/Transformation_matrix#Reflection
 	     */
-	    case Skewed_Horiz_Shape(orig, shx) => {
-	      // TODO: check to see if shx is actually in the same units
-	      write_shape(orig, AffineTransform.getShearInstance(shx, 0) :: transforms)
+	    case Skewed_Horiz_Shape(orig, degrees) => {
+	      write_shape(orig, AffineTransform.getShearInstance(tan(toRadians(degrees)), 0) :: transforms)
 	    }
-	    case Skewed_Vert_Shape(orig, shy) => {
-	      // TODO: check to see if shy is actually in the same units
-	      write_shape(orig, AffineTransform.getShearInstance(0, shy) :: transforms)
+	    case Skewed_Vert_Shape(orig, degrees) => {
+	      write_shape(orig, AffineTransform.getShearInstance(0, tan(toRadians(degrees))) :: transforms)
 	    }
 	    // once all the transformations are extracted
 	    // draw an actual shape
@@ -83,8 +83,12 @@ class ToyRenderer extends Renderer {
          * TODO: go through tie.shapes and tie.paths and pair them off with
          *       matching primitives in java.awt.geom.*
          */
-        
-        case Circle(rad: Double) => new Ellipse2D.Double(0,0,2*rad, 2*rad)
+        case Ellipse(wRad: Double, hRad: Double) => new Ellipse2D.Double(0,0,2*wRad, 2*hRad)
+        /* 
+         * NOTE: Since Circle is a restricted Ellipse, implementing Ellipse covers it
+         * 
+         * case Circle(rad: Double) => new Ellipse2D.Double(0,0,2*rad, 2*rad)
+         */
         case Rectangle (h: Double, w: Double) => new Rectangle2D.Double(0,0,h,w)
         
         // java.awt.geom.Area was the most generic "empty" Shape instance I could find

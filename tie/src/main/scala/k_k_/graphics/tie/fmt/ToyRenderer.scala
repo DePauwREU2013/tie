@@ -55,6 +55,13 @@ class ToyRenderer extends Renderer {
 	    }
 	    // once all the transformations are extracted
 	    // draw an actual shape
+	    case Composite_Shape(below, above) => {
+	      /*
+	       * Do two calls still get TCO love?
+	       */
+          write_shape(above, transforms)
+          write_shape(below, transforms)
+        }
 	    case transformed_shape if !transforms.isEmpty => {
 	      write_transformed_shape(transformed_shape, transforms)
 	    }

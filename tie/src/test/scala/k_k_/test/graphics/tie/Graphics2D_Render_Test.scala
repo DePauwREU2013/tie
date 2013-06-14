@@ -91,11 +91,17 @@ class Graphics2D_Render_Test extends JUnitSuite {
 	  
 	  val canvas: Canvas = new Canvas(
 	      Canvas_Props(600, 400, Origin_Top_Left, "Test Output"),
+	      
 	      Circle(100) -* 2
 	    , Rectangle(50,70) -% 10 -+ (100, 100)
-	    // see: not commutative
+	    
+	    // skew test (nb: not commutative)
 	    , Square(60) -/- 45 -/| 45
 	    , Square(50) -/| 45 -/- 45
+	    
+	    // composites test
+	    , Circle(10) -& (Circle(20) -+ (222,0))
+	    , Circle(10) -& (Circle(20) -+ (222,0)) -+ (0, 50)
 	    )
 	  
 	  val panel = new CanvasPanel(canvas)

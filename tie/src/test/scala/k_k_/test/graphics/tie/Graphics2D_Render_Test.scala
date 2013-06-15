@@ -25,15 +25,9 @@ import k_k_.graphics.tie.ink.{Named_Colors => C, _}
 import k_k_.graphics.tie.shapes._
 import java.awt.{Graphics, Graphics2D, Color}
 import javax.swing._
-//import java.awt._
-//import java.awt.Color
 import k_k_.graphics.tie.Canvas
 import k_k_.graphics.tie.fmt.ToyRenderer
 import k_k_.graphics.tie.fmt.graphics2d.Graphics2D_Renderer
-//import java.awt.event.WindowStateListener
-//import java.awt.event.WindowAdapter
-//import java.awt.event.WindowEvent
-//import scala.swing.Dialog
 
 @Test
 class Graphics2D_Render_Test extends JUnitSuite {
@@ -56,22 +50,6 @@ class Graphics2D_Render_Test extends JUnitSuite {
           
 	  val frame = new JFrame("Graphics Test")
 	  frame.setSize(600, 400)
-	  
-	  /*
-	   * This should be keeping the window, but JUnit still kills it immediately :(
-	   */
-//	  frame.addWindowListener(new WindowAdapter() {
-//	    
-//	    override def windowClosing(event: WindowEvent): Unit = {
-//	      Dialog.showConfirmation(parent = null,
-//	    		  title = "Exit",
-//	    		  message = "Are you sure you want to quit?"
-//	      ) match {
-//	      	case Dialog.Result.Ok => exit(0)
-//	      	case _ => ()
-//	      }
-//	    }
-//	  })
 	  
 	  /*
 	   * NOTE: I'm temporarily using the syntax
@@ -102,6 +80,9 @@ class Graphics2D_Render_Test extends JUnitSuite {
 	    // composites test
 	    , Circle(10) -& (Circle(20) -+ (222,0))
 	    , Circle(10) -& (Circle(20) -+ (222,0)) -+ (0, 50)
+	    
+	    // reflection test
+	    , Rectangle(100, 25) -|- (15, 300, 200)
 	    )
 	  
 	  val panel = new CanvasPanel(canvas)

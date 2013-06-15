@@ -31,7 +31,7 @@ class ToyRenderer extends Renderer {
     
     def write_shape(s:Shape, transforms: List[AffineTransform]): Unit = {
       
-      import scala.math.{tan, toRadians}
+      import scala.math.{cos, sin, tan, toRadians}
       
 	  s match {
 	    // first unwrap all transformations
@@ -41,16 +41,24 @@ class ToyRenderer extends Renderer {
 	    case Scaled_Shape(orig: Shape, sx: Double, sy: Double) => {
 	      write_shape(orig, AffineTransform.getScaleInstance(sx, sy) :: transforms)
 	    }
-	    case Rotated_Shape(orig, degrees, x_pivot, y_pivot) => {
+	    case Rotated_Shape(orig: Shape, degrees, x_pivot, y_pivot) => {
 	      write_shape(orig, AffineTransform.getRotateInstance(toRadians(degrees), x_pivot, y_pivot) :: transforms)
 	    }
-	    /* TODO: need to implement Reflected_Shape transform
-	     *   cf: http://en.wikipedia.org/wiki/Transformation_matrix#Reflection
+	    /*
+	     * TODO: Fix reflection
+	     * Note: This is what he has in the SVG renderer, but it is just a composite
+	     *       of a reflection, rotation, and translation.  I suppose it was originally
+	     *       intended to be a reflection across a line passing through (x,y) and
+	     *       directed in the (cos(degrees), sin(degrees)) direction.
 	     */
-	    case Skewed_Horiz_Shape(orig, degrees) => {
+	    case Reflected_Shape(orig: Shape, degrees, x, y) => {
+	      val phi = toRadians(degrees)
+	      write_shape(orig, new AffineTransform(cos(phi), sin(phi), sin(phi), -cos(phi), x, y) :: transforms)
+	    }
+	    case Skewed_Horiz_Shape(orig: Shape, degrees) => {
 	      write_shape(orig, AffineTransform.getShearInstance(tan(toRadians(degrees)), 0) :: transforms)
 	    }
-	    case Skewed_Vert_Shape(orig, degrees) => {
+	    case Skewed_Vert_Shape(orig: Shape, degrees) => {
 	      write_shape(orig, AffineTransform.getShearInstance(0, tan(toRadians(degrees))) :: transforms)
 	    }
 	    // once all the transformations are extracted
